@@ -1,102 +1,72 @@
-# Predicting NBA Playoff Participation and Championship Wins
+# NBA Stats Analysis
 
-## Overview
+Predicting Playoff Participation and Championship Wins from Regular Season Statistics
 
-This project aims to predict NBA playoff participation and championship wins based on regular season statistics. By leveraging historical game data, I have developed machine learning models that provide insights into a team's chances of making the playoffs and winning the championship.
+---
 
-## Data Collection and Preparation
+## Purpose
 
-I collected game data from the NBA for both regular season and playoff games. The data includes various performance metrics such as field goal percentage, three-point percentage, free throw percentage, points scored, and more.
+This project explores whether a team's regular season performance metrics can predict their likelihood of making the playoffs or winning the NBA championship. Two machine learning models were trained using historical game data to evaluate how well statistical indicators translate into postseason success.
 
-1. **Data Source**: NBA game data stored in a SQLite database obtained from Kaggle.com (NBA Database from Wyatt Walsh).
-2. **Data Processing**: The data was fetched, cleaned, and prepared for analysis using Python.
+---
 
-## Methodology
+## Tools & Techniques
 
-### Data Extraction
-- Regular season and playoff game data were extracted from the database.
-- A dataset was created with labels indicating playoff participation and championship wins.
+**Languages & Libraries:**  
+Python, SQLite, pandas, matplotlib, seaborn, scikit-learn, imbalanced-learn (SMOTE)
 
-### Feature Engineering
-- Features such as average field goal percentage, three-point percentage, free throw percentage, points scored, and other metrics were calculated for each team.
+**Techniques Used:**
+- Data extraction from relational database (SQLite)
+- Feature engineering from game-level stats
+- Principal Component Analysis (PCA) for visualization
+- SMOTE for addressing class imbalance
+- Logistic Regression for playoff prediction
+- Random Forest for championship prediction
+- Evaluation via accuracy, precision, recall, and F1-score
 
-### Model Training
-- Two classification models were trained: one to predict playoff participation and another to predict championship wins.
-- Logistic Regression was used for playoff prediction, while Random Forest was used for championship prediction.
-- To address class imbalance, the SMOTE (Synthetic Minority Over-sampling Technique) was applied to oversample the minority classes.
+---
 
-### Model Evaluation
-- The models were evaluated using accuracy and classification reports.
-- Undefined precision and recall values were handled appropriately using the `zero_division` parameter.
+## Key Insights
 
-### Data Visualization
-- The data parsing and visualization script parsed data from the tables of average statistics.
-- Informative plot graphs were created to visualize team performance and clustering based on regular season statistics using PCA (Principal Component Analysis).
-- Clusters of teams were identified, and the plots were annotated with team names to provide a clear visualization of their performance. '*Blue denotes participation in the playoffs. Red denotes winners*'
+- The **playoff participation model** achieved an accuracy of 68.25%.  
+- The **championship prediction model** achieved a high overall accuracy of 98.33%, but this was heavily skewed due to class imbalance (only a few teams win championships).
+- Feature engineering on stats such as field goal %, 3-point %, free throw %, and points scored provided predictive signal.
+- PCA visualization clearly clustered teams based on regular season performance, with playoff teams and champions forming distinct groups.
+- The models suggest that playoff participation is easier to predict than championship wins, which are more variable.
 
-![Example Visualization from 2014 Season](Data%20Visualization/2014.png)
+---
 
+## Sample Prediction
 
-## Results
+Given a new team’s regular season statistics, the models can estimate:
 
-The models demonstrated good performance in predicting playoff participation and championship wins. Below are the key metrics from the model evaluation:
+- **Playoff Probability:** 99.99%  
+- **Championship Win Probability:** 41.00%
 
-### Playoff Participation Model
-- **Accuracy**: 68.25%
-- **Classification Report**:
+These values offer interpretable outputs for analysts, coaches, or fans.
 
-  |               | precision | recall | f1-score | support |
-  |---------------|-----------|--------|----------|---------|
-  | 0             | 0.01      | 0.67   | 0.02     | 48      |
-  | 1             | 1.00      | 0.68   | 0.81     | 8038    |
-  | **accuracy**  |           |        | 0.68     | 8086    |
-  | **macro avg** | 0.50      | 0.67   | 0.42     | 8086    |
-  | **weighted avg** | 0.99   | 0.68   | 0.81     | 8086    |
+---
 
-### Championship Win Model
-- **Accuracy**: 98.33%
-- **Classification Report**:
+## Project Structure
 
-  |               | precision | recall | f1-score | support |
-  |---------------|-----------|--------|----------|---------|
-  | 0             | 0.00      | 0.00   | 0.00     | 130     |
-  | 1             | 0.99      | 0.68   | 0.81     | 8006    |
-  | **accuracy**  |           |        | 0.98     | 8086    |
-  | **macro avg** | 0.49      | 0.50   | 0.50     | 8086    |
-  | **weighted avg** | 0.97   | 0.98   | 0.98     | 8086    |
+- **Data Extraction & Preparation:** Loads historical NBA data and computes team-level aggregates.
+- **Visualization Script:** Performs PCA and annotates team clusters by playoff/championship status.
+- **Model Training & Prediction:** Builds and evaluates machine learning models for classification tasks.
 
-## Insights and Predictions
+---
 
-Using the trained models, the predictability of playoff participation is highly likely but the same can not be said for championship wins based solely on the teams regular season stats. For example, given the regular season stats for a new team, the models can output:
+## Personal Takeaways
 
-- **Playoff Probability**: 99.99%
-- **Championship Win Probability**: 41.00%
+- Learned to balance imbalanced classification using SMOTE  
+- Improved PCA interpretation and clustering visualization techniques  
+- Gained experience connecting SQL-based data sources to predictive pipelines  
+- Practiced building interpretable sports analytics models that highlight data limitations
 
-## Visualization
-
-To visualize the clustering of teams based on their regular season stats, I performed PCA (Principal Component Analysis) and plotted the results. Teams were clustered into groups, and the plot annotated with team names provides a clear visualization of their performance. Blue names denote participants in the playoffs and red name denotes championship winner.  
-
-## Code Implementation
-
-The project involved three scripts:
-
-1. **Data Extraction and Preparation Script**:
-   - Fetches game data from the database.
-   - Creates tables with average statistics for regular season and playoff teams.
-
-2. **Data Parsing and Visualization Script**:
-   - Parses data from the tables of average statistics created in the data extraction and preparation script.
-   - Creates informative plot graphs to visualize team performance and clustering based on regular season statistics.
-
-3. **Model Training and Prediction Script**:
-   - Trains classification models to predict playoff participation and championship wins.
-   - Evaluates model performance.
-   - Provides a function to predict probabilities for new data.
-
-## Conclusion
-
-This project successfully demonstrates the use of machine learning models to predict NBA playoff participation and championship wins based on regular season statistics. The insights and predictions generated can be valuable for teams, analysts, and fans alike.
+---
 
 ## Contact
 
-For more information or to discuss this project, please contact me at rmnesbitt@gmail.com.
+Ryan Nesbitt  
+rmnesbitt@gmail.com  
+https://www.linkedin.com/in/rmnesbitt  
+http://rmnesbitt.github.io
